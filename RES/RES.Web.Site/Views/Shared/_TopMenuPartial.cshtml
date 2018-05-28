@@ -1,0 +1,41 @@
+﻿@using  RES.Commons.Core.Resource
+
+
+<div class="dropdown">
+    @{
+        var current = Session != null && Session["CurrentLanguage"] != null ? Session["CurrentLanguage"].ToString() : RES.Web.Site.Properties.Settings.Default.DefaultLanguage;
+    }
+    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+        @if (current != "es-ES" && current != "es")
+        {
+            <span id="language">
+                @Resources.English
+            </span>
+        }
+        else if (current != "en-US" && current != "en")
+        {
+            <span id="language">
+                @Resources.Spanish
+            </span>
+        }
+        <img src="~/Content/images/down.png" class="drop-arrow" />
+    </a>
+    <ul class="dropdown-menu">
+        <li style="border-right: 0 !important; border-left: 0 none !important;">
+            @if (current == "es-ES" || current == "es")
+            {
+                <a href="@Url.Action("ChangeLanguage", "Culture", new { language = "en"})">
+                    @Resources.English
+                </a>
+            }
+            else if (current == "en-US" || current == "en")
+            {
+                <a href="@Url.Action("ChangeLanguage", "Culture", new { language = "es"})">
+                    @Resources.Spanish
+                </a>
+            }
+        </li>      
+    </ul>
+</div>
+
+

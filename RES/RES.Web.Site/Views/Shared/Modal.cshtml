@@ -1,0 +1,62 @@
+﻿@using RES.Commons.Core.Resource;
+
+
+<div id="term-modal" class="reveal-modal">
+    <a class="close-reveal-modal">&times;</a>
+    <div class="term-mod">
+        <div class="term-title">@Resources.TermTitle</div>
+          <div class="term-content">
+            <div class="term-wrapper">
+                @Resources.Term
+            </div>
+            <div class="show page-btn"><input type="button" class="send-btn" value="@Resources.Accept" id="button-send" /></div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+     var urlDeleteContact = "@Url.Action("DeleteContact", "Contact")";
+    var urlListContacts = "@Url.Action("ListContacts", "Contact")";
+
+    function deleteContact() {
+
+        $.ajax({
+
+            url: urlDeleteContact,
+
+            type: "POST",
+            data: JSON.stringify(json),
+            contentType: "application/json",
+            success: function (result) {
+                window.location.href = urlListContacts;
+            },
+            error: function (xmlHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    }
+
+        $('.close-reveal-modal').on('click', function (e) {
+            $('#term-modal').modal('hide');
+        });
+
+
+
+
+        $('#button-send').on('click', function (e) {
+            alert(urlDeleteContact + "/" + 26);
+            deleteContact();
+            $('#term-modal').modal('hide');
+        });
+
+        $('.modal-backdrop').on('click', function (e) {
+            $('#term-modal').modal('hide');
+        });
+        $('body').keyup(function (e) {
+            if (e.which === 27) { $('#term-modal').modal('hide'); } // 27 is the keycode for the Escape key
+        });
+
+
+</script>
+

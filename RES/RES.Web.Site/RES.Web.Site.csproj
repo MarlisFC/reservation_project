@@ -1,0 +1,713 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{166BBDB0-E058-4E37-93C1-D0892020F3F5}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RES.Web.Site</RootNamespace>
+    <AssemblyName>RES.Web.Site</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>ExternalSource\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="ClearScript, Version=5.4.9.0, Culture=neutral, PublicKeyToken=935d0c957da47c73, processorArchitecture=MSIL">
+      <HintPath>..\packages\JavaScriptEngineSwitcher.V8.2.4.2\lib\net45\ClearScript.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="JavaScriptEngineSwitcher.ChakraCore, Version=2.4.8.0, Culture=neutral, PublicKeyToken=c608b2a8cc9e4472, processorArchitecture=MSIL">
+      <HintPath>..\packages\JavaScriptEngineSwitcher.ChakraCore.2.4.8\lib\net45\JavaScriptEngineSwitcher.ChakraCore.dll</HintPath>
+    </Reference>
+    <Reference Include="JavaScriptEngineSwitcher.Core, Version=2.4.9.0, Culture=neutral, PublicKeyToken=c608b2a8cc9e4472, processorArchitecture=MSIL">
+      <HintPath>..\packages\JavaScriptEngineSwitcher.Core.2.4.9\lib\net45\JavaScriptEngineSwitcher.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="JavaScriptEngineSwitcher.Msie, Version=2.4.9.0, Culture=neutral, PublicKeyToken=c608b2a8cc9e4472, processorArchitecture=MSIL">
+      <HintPath>..\packages\JavaScriptEngineSwitcher.Msie.2.4.9\lib\net45\JavaScriptEngineSwitcher.Msie.dll</HintPath>
+    </Reference>
+    <Reference Include="JavaScriptEngineSwitcher.V8, Version=2.4.2.0, Culture=neutral, PublicKeyToken=c608b2a8cc9e4472, processorArchitecture=MSIL">
+      <HintPath>..\packages\JavaScriptEngineSwitcher.V8.2.4.2\lib\net45\JavaScriptEngineSwitcher.V8.dll</HintPath>
+    </Reference>
+    <Reference Include="JSPool, Version=3.0.1.0, Culture=neutral, PublicKeyToken=2fc7775f73072640, processorArchitecture=MSIL">
+      <HintPath>..\packages\JSPool.3.0.1\lib\net451\JSPool.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MsieJavaScriptEngine, Version=2.2.2.0, Culture=neutral, PublicKeyToken=a3a2846a37ac0d3e, processorArchitecture=MSIL">
+      <HintPath>..\packages\MsieJavaScriptEngine.2.2.2\lib\net45\MsieJavaScriptEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcPaging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ExternalSource\MvcPaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.3.3.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.3\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.3.0\lib\net45\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common.WebHost, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.WebHost.3.3.0\lib\net45\Ninject.Web.Common.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC5.3.3.0\lib\net45\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.16.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ExternalSource\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="React.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=9aed67b161f7db78, processorArchitecture=MSIL">
+      <HintPath>..\packages\React.Core.3.3.0\lib\net40\React.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="React.Router.Mvc4, Version=3.3.0.0, Culture=neutral, PublicKeyToken=9aed67b161f7db78, processorArchitecture=MSIL">
+      <HintPath>..\packages\React.Router.Mvc4.3.3.0\lib\net451\React.Router.Mvc4.dll</HintPath>
+    </Reference>
+    <Reference Include="React.Web, Version=3.3.0.0, Culture=neutral, PublicKeyToken=9aed67b161f7db78, processorArchitecture=MSIL">
+      <HintPath>..\packages\React.Web.3.3.0\lib\net40\React.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="React.Web.Mvc4, Version=3.3.0.0, Culture=neutral, PublicKeyToken=9aed67b161f7db78, processorArchitecture=MSIL">
+      <HintPath>..\packages\React.Web.Mvc4.3.3.0\lib\net40\React.Web.Mvc4.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="TwitterBootstrapMVC">
+      <HintPath>ExternalSource\TwitterBootstrapMVC.dll</HintPath>
+    </Reference>
+    <Reference Include="VroomJs, Version=1.2.3.0, Culture=neutral, PublicKeyToken=e7c52e67fcb0044f, processorArchitecture=MSIL">
+      <HintPath>..\packages\VroomJs.1.2.3\lib\net45\VroomJs.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ApplicationInsights">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="App_Start\ReactConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CultureController.cs" />
+    <Compile Include="Controllers\ContactController .cs" />
+    <Compile Include="Controllers\ReservationController.cs" />
+    <Compile Include="Extensions\CultureHelper.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\editor.css" />
+    <Content Include="Content\images\calendar.png" />
+    <Content Include="Content\images\banner.png" />
+    <Content Include="Content\images\description.png" />
+    <Content Include="Content\images\down.png" />
+    <Content Include="Content\images\geayStartLast.png" />
+    <Content Include="Content\images\greyHeart.png" />
+    <Content Include="Content\images\greyStart.png" />
+    <Content Include="Content\images\phone.png" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\redHeart.png" />
+    <Content Include="Content\images\reservation.png" />
+    <Content Include="Content\images\sort.png" />
+    <Content Include="Content\images\type.png" />
+    <Content Include="Content\images\name.png" />
+    <Content Include="Content\images\yellowStart.png" />
+    <Content Include="Content\summernote.css" />
+    <Content Include="ExternalSource\MvcPaging.dll" />
+    <Content Include="Scripts\knockout-3.4.2.debug.js" />
+    <Content Include="Scripts\knockout-3.4.2.js" />
+    <Content Include="Scripts\summernote.js" />
+    <Content Include="ExternalSource\PagedList.dll" />
+    <Content Include="ExternalSource\TwitterBootstrapMVC.dll" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\editor.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\summernote\.gitignore" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-ar-AR.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-ar-AR.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-bg-BG.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-bg-BG.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-ca-ES.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-ca-ES.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-cs-CZ.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-cs-CZ.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-da-DK.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-da-DK.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-de-DE.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-de-DE.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-el-GR.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-el-GR.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-es-ES.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-es-ES.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-es-EU.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-es-EU.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-fa-IR.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-fa-IR.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-fi-FI.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-fi-FI.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-fr-FR.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-fr-FR.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-gl-ES.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-gl-ES.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-he-IL.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-he-IL.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-hr-HR.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-hr-HR.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-hu-HU.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-hu-HU.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-id-ID.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-id-ID.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-it-IT.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-it-IT.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-ja-JP.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-ja-JP.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-ko-KR.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-ko-KR.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-lt-LT.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-lt-LT.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-lt-LV.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-lt-LV.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-mn-MN.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-mn-MN.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-nb-NO.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-nb-NO.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-nl-NL.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-nl-NL.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-pl-PL.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-pl-PL.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-pt-BR.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-pt-BR.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-pt-PT.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-pt-PT.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-ro-RO.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-ro-RO.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-ru-RU.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-ru-RU.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-sk-SK.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-sk-SK.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-sl-SI.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-sl-SI.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-sr-RS-Latin.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-sr-RS-Latin.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-sr-RS.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-sr-RS.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-sv-SE.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-sv-SE.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-ta-IN.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-ta-IN.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-th-TH.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-th-TH.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-tr-TR.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-tr-TR.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-uk-UA.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-uk-UA.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-vi-VN.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-vi-VN.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-zh-CN.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-zh-CN.min.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-zh-TW.js" />
+    <Content Include="Scripts\summernote\dist\lang\summernote-zh-TW.min.js" />
+    <Content Include="Scripts\summernote\dist\summernote-bs4.css" />
+    <Content Include="Scripts\summernote\dist\summernote-bs4.js" />
+    <Content Include="Scripts\summernote\dist\summernote-bs4.min.js" />
+    <Content Include="Scripts\summernote\dist\summernote-lite.css" />
+    <Content Include="Scripts\summernote\dist\summernote-lite.js" />
+    <Content Include="Scripts\summernote\dist\summernote.css" />
+    <Content Include="Scripts\summernote\dist\summernote.js" />
+    <Content Include="Scripts\summernote\dist\summernote.min.js" />
+    <Content Include="Scripts\summernote\examples\airmode.html" />
+    <Content Include="Scripts\summernote\examples\bs3.html" />
+    <Content Include="Scripts\summernote\examples\bs4.html" />
+    <Content Include="Scripts\summernote\examples\codemirror.html" />
+    <Content Include="Scripts\summernote\examples\external-api.html" />
+    <Content Include="Scripts\summernote\examples\hint-emoji.html" />
+    <Content Include="Scripts\summernote\examples\hint-symbols_mathematical-symbols_Greek-letters.html" />
+    <Content Include="Scripts\summernote\examples\hint-userdefine.html" />
+    <Content Include="Scripts\summernote\examples\ie8.html" />
+    <Content Include="Scripts\summernote\examples\jquery-custom-event.html" />
+    <Content Include="Scripts\summernote\examples\jquery19lt.html" />
+    <Content Include="Scripts\summernote\examples\lang.html" />
+    <Content Include="Scripts\summernote\examples\link-blank.html" />
+    <Content Include="Scripts\summernote\examples\lite.html" />
+    <Content Include="Scripts\summernote\examples\nativestyle.html" />
+    <Content Include="Scripts\summernote\examples\ondialog-multitab.html" />
+    <Content Include="Scripts\summernote\examples\ondialog.html" />
+    <Content Include="Scripts\summernote\examples\plugin-hello.html" />
+    <Content Include="Scripts\summernote\examples\rtl.html" />
+    <Content Include="Scripts\summernote\examples\textarea.html" />
+    <Content Include="Scripts\summernote\examples\toolbar-container.html" />
+    <Content Include="Scripts\summernote\examples\with-google-font.html" />
+    <Content Include="Scripts\summernote\Gruntfile.js" />
+    <Content Include="Scripts\summernote\grunts\grunt-build.js" />
+    <Content Include="Scripts\summernote\index.html" />
+    <Content Include="Scripts\summernote\karma.conf.js" />
+    <Content Include="Scripts\summernote\lang\summernote-ar-AR.js" />
+    <Content Include="Scripts\summernote\lang\summernote-bg-BG.js" />
+    <Content Include="Scripts\summernote\lang\summernote-ca-ES.js" />
+    <Content Include="Scripts\summernote\lang\summernote-cs-CZ.js" />
+    <Content Include="Scripts\summernote\lang\summernote-da-DK.js" />
+    <Content Include="Scripts\summernote\lang\summernote-de-DE.js" />
+    <Content Include="Scripts\summernote\lang\summernote-el-GR.js" />
+    <Content Include="Scripts\summernote\lang\summernote-es-ES.js" />
+    <Content Include="Scripts\summernote\lang\summernote-es-EU.js" />
+    <Content Include="Scripts\summernote\lang\summernote-fa-IR.js" />
+    <Content Include="Scripts\summernote\lang\summernote-fi-FI.js" />
+    <Content Include="Scripts\summernote\lang\summernote-fr-FR.js" />
+    <Content Include="Scripts\summernote\lang\summernote-gl-ES.js" />
+    <Content Include="Scripts\summernote\lang\summernote-he-IL.js" />
+    <Content Include="Scripts\summernote\lang\summernote-hr-HR.js" />
+    <Content Include="Scripts\summernote\lang\summernote-hu-HU.js" />
+    <Content Include="Scripts\summernote\lang\summernote-id-ID.js" />
+    <Content Include="Scripts\summernote\lang\summernote-it-IT.js" />
+    <Content Include="Scripts\summernote\lang\summernote-ja-JP.js" />
+    <Content Include="Scripts\summernote\lang\summernote-ko-KR.js" />
+    <Content Include="Scripts\summernote\lang\summernote-lt-LT.js" />
+    <Content Include="Scripts\summernote\lang\summernote-lt-LV.js" />
+    <Content Include="Scripts\summernote\lang\summernote-mn-MN.js" />
+    <Content Include="Scripts\summernote\lang\summernote-nb-NO.js" />
+    <Content Include="Scripts\summernote\lang\summernote-nl-NL.js" />
+    <Content Include="Scripts\summernote\lang\summernote-pl-PL.js" />
+    <Content Include="Scripts\summernote\lang\summernote-pt-BR.js" />
+    <Content Include="Scripts\summernote\lang\summernote-pt-PT.js" />
+    <Content Include="Scripts\summernote\lang\summernote-ro-RO.js" />
+    <Content Include="Scripts\summernote\lang\summernote-ru-RU.js" />
+    <Content Include="Scripts\summernote\lang\summernote-sk-SK.js" />
+    <Content Include="Scripts\summernote\lang\summernote-sl-SI.js" />
+    <Content Include="Scripts\summernote\lang\summernote-sr-RS-Latin.js" />
+    <Content Include="Scripts\summernote\lang\summernote-sr-RS.js" />
+    <Content Include="Scripts\summernote\lang\summernote-sv-SE.js" />
+    <Content Include="Scripts\summernote\lang\summernote-ta-IN.js" />
+    <Content Include="Scripts\summernote\lang\summernote-th-TH.js" />
+    <Content Include="Scripts\summernote\lang\summernote-tr-TR.js" />
+    <Content Include="Scripts\summernote\lang\summernote-uk-UA.js" />
+    <Content Include="Scripts\summernote\lang\summernote-uz-UZ.js" />
+    <Content Include="Scripts\summernote\lang\summernote-vi-VN.js" />
+    <Content Include="Scripts\summernote\lang\summernote-zh-CN.js" />
+    <Content Include="Scripts\summernote\lang\summernote-zh-TW.js" />
+    <Content Include="Scripts\summernote\plugin\databasic\summernote-ext-databasic.css" />
+    <Content Include="Scripts\summernote\plugin\databasic\summernote-ext-databasic.js" />
+    <Content Include="Scripts\summernote\plugin\hello\summernote-ext-hello.js" />
+    <Content Include="Scripts\summernote\plugin\specialchars\summernote-ext-specialchars.js" />
+    <Content Include="Scripts\summernote\src\icons\align-center.svg" />
+    <Content Include="Scripts\summernote\src\icons\align-indent.svg" />
+    <Content Include="Scripts\summernote\src\icons\align-justify.svg" />
+    <Content Include="Scripts\summernote\src\icons\align-left.svg" />
+    <Content Include="Scripts\summernote\src\icons\align-outdent.svg" />
+    <Content Include="Scripts\summernote\src\icons\align-right.svg" />
+    <Content Include="Scripts\summernote\src\icons\align.svg" />
+    <Content Include="Scripts\summernote\src\icons\arrow-circle-down.svg" />
+    <Content Include="Scripts\summernote\src\icons\arrow-circle-left.svg" />
+    <Content Include="Scripts\summernote\src\icons\arrow-circle-right.svg" />
+    <Content Include="Scripts\summernote\src\icons\arrow-circle-up.svg" />
+    <Content Include="Scripts\summernote\src\icons\arrows-alt.svg" />
+    <Content Include="Scripts\summernote\src\icons\arrows-h.svg" />
+    <Content Include="Scripts\summernote\src\icons\arrows-v.svg" />
+    <Content Include="Scripts\summernote\src\icons\bold.svg" />
+    <Content Include="Scripts\summernote\src\icons\caret.svg" />
+    <Content Include="Scripts\summernote\src\icons\chain-broken.svg" />
+    <Content Include="Scripts\summernote\src\icons\circle.svg" />
+    <Content Include="Scripts\summernote\src\icons\close.svg" />
+    <Content Include="Scripts\summernote\src\icons\code.svg" />
+    <Content Include="Scripts\summernote\src\icons\col-after.svg" />
+    <Content Include="Scripts\summernote\src\icons\col-before.svg" />
+    <Content Include="Scripts\summernote\src\icons\col-remove.svg" />
+    <Content Include="Scripts\summernote\src\icons\eraser.svg" />
+    <Content Include="Scripts\summernote\src\icons\font.svg" />
+    <Content Include="Scripts\summernote\src\icons\frame.svg" />
+    <Content Include="Scripts\summernote\src\icons\italic.svg" />
+    <Content Include="Scripts\summernote\src\icons\link.svg" />
+    <Content Include="Scripts\summernote\src\icons\magic.svg" />
+    <Content Include="Scripts\summernote\src\icons\menu-check.svg" />
+    <Content Include="Scripts\summernote\src\icons\minus.svg" />
+    <Content Include="Scripts\summernote\src\icons\orderedlist.svg" />
+    <Content Include="Scripts\summernote\src\icons\pencil.svg" />
+    <Content Include="Scripts\summernote\src\icons\picture.svg" />
+    <Content Include="Scripts\summernote\src\icons\question.svg" />
+    <Content Include="Scripts\summernote\src\icons\redo.svg" />
+    <Content Include="Scripts\summernote\src\icons\row-above.svg" />
+    <Content Include="Scripts\summernote\src\icons\row-below.svg" />
+    <Content Include="Scripts\summernote\src\icons\row-remove.svg" />
+    <Content Include="Scripts\summernote\src\icons\special-character.svg" />
+    <Content Include="Scripts\summernote\src\icons\square.svg" />
+    <Content Include="Scripts\summernote\src\icons\strikethrough.svg" />
+    <Content Include="Scripts\summernote\src\icons\subscript.svg" />
+    <Content Include="Scripts\summernote\src\icons\summernote.svg" />
+    <Content Include="Scripts\summernote\src\icons\superscript.svg" />
+    <Content Include="Scripts\summernote\src\icons\table.svg" />
+    <Content Include="Scripts\summernote\src\icons\templates\summernote.css" />
+    <Content Include="Scripts\summernote\src\icons\text-height.svg" />
+    <Content Include="Scripts\summernote\src\icons\trash.svg" />
+    <Content Include="Scripts\summernote\src\icons\underline.svg" />
+    <Content Include="Scripts\summernote\src\icons\undo.svg" />
+    <Content Include="Scripts\summernote\src\icons\unorderedlist.svg" />
+    <Content Include="Scripts\summernote\src\icons\video.svg" />
+    <Content Include="Scripts\summernote\src\js\base\Context.js" />
+    <Content Include="Scripts\summernote\src\js\base\core\async.js" />
+    <Content Include="Scripts\summernote\src\js\base\core\dom.js" />
+    <Content Include="Scripts\summernote\src\js\base\core\env.js" />
+    <Content Include="Scripts\summernote\src\js\base\core\func.js" />
+    <Content Include="Scripts\summernote\src\js\base\core\key.js" />
+    <Content Include="Scripts\summernote\src\js\base\core\lists.js" />
+    <Content Include="Scripts\summernote\src\js\base\core\range.js" />
+    <Content Include="Scripts\summernote\src\js\base\editing\Bullet.js" />
+    <Content Include="Scripts\summernote\src\js\base\editing\History.js" />
+    <Content Include="Scripts\summernote\src\js\base\editing\Style.js" />
+    <Content Include="Scripts\summernote\src\js\base\editing\Table.js" />
+    <Content Include="Scripts\summernote\src\js\base\editing\Typing.js" />
+    <Content Include="Scripts\summernote\src\js\base\module\AirPopover.js" />
+    <Content Include="Scripts\summernote\src\js\base\module\AutoLink.js" />
+    <Content Include="Scripts\summernote\src\js\base\module\AutoSync.js" />
+    <Content Include="Scripts\summernote\src\js\base\module\Buttons.js" />
+    <Content Include="Scripts\summernote\src\js\base\module\Clipboard.js" />
+    <Content Include="Scripts\summernote\src\js\base\module\Codeview.js" />
+    <Content Include="Scripts\summernote\src\js\base\module\Dropzone.js" />
+    <Content Include="Scripts\summernote\src\js\base\module\Editor.js" />
+    <Content Include="Scripts\summernote\src\js\base\module\Fullscreen.js" />
+    <Content Include="Scripts\summernote\src\js\base\module\Handle.js" />
+    <Content Include="Scripts\summernote\src\js\base\module\HelpDialog.js" />
+    <Content Include="Scripts\summernote\src\js\base\module\HintPopover.js" />
+    <Content Include="Scripts\summernote\src\js\base\module\ImageDialog.js" />
+    <Content Include="Scripts\summernote\src\js\base\module\ImagePopover.js" />
+    <Content Include="Scripts\summernote\src\js\base\module\LinkDialog.js" />
+    <Content Include="Scripts\summernote\src\js\base\module\LinkPopover.js" />
+    <Content Include="Scripts\summernote\src\js\base\module\Placeholder.js" />
+    <Content Include="Scripts\summernote\src\js\base\module\Statusbar.js" />
+    <Content Include="Scripts\summernote\src\js\base\module\TablePopover.js" />
+    <Content Include="Scripts\summernote\src\js\base\module\Toolbar.js" />
+    <Content Include="Scripts\summernote\src\js\base\module\VideoDialog.js" />
+    <Content Include="Scripts\summernote\src\js\base\renderer.js" />
+    <Content Include="Scripts\summernote\src\js\base\summernote-en-US.js" />
+    <Content Include="Scripts\summernote\src\js\bs3\settings.js" />
+    <Content Include="Scripts\summernote\src\js\bs3\ui.js" />
+    <Content Include="Scripts\summernote\src\js\bs4\settings.js" />
+    <Content Include="Scripts\summernote\src\js\bs4\ui.js" />
+    <Content Include="Scripts\summernote\src\js\lite\settings.js" />
+    <Content Include="Scripts\summernote\src\js\lite\ui.js" />
+    <Content Include="Scripts\summernote\src\js\lite\ui\DropdownUI.js" />
+    <Content Include="Scripts\summernote\src\js\lite\ui\ModalUI.js" />
+    <Content Include="Scripts\summernote\src\js\lite\ui\PopoverUI.js" />
+    <Content Include="Scripts\summernote\src\js\lite\ui\TooltipUI.js" />
+    <Content Include="Scripts\summernote\src\js\summernote.js" />
+    <Content Include="Scripts\summernote\test\chaidom.js" />
+    <Content Include="Scripts\summernote\test\e2e\html\initialization.html" />
+    <Content Include="Scripts\summernote\test\e2e\initialization.test.js" />
+    <Content Include="Scripts\summernote\test\e2e\static-server.js" />
+    <Content Include="Scripts\summernote\test\libs\sauce.js" />
+    <Content Include="Scripts\summernote\test\nightwatch.conf.js" />
+    <Content Include="Scripts\summernote\test\unit\base\Context.spec.js" />
+    <Content Include="Scripts\summernote\test\unit\base\core\dom.spec.js" />
+    <Content Include="Scripts\summernote\test\unit\base\core\func.spec.js" />
+    <Content Include="Scripts\summernote\test\unit\base\core\key.spec.js" />
+    <Content Include="Scripts\summernote\test\unit\base\core\lists.spec.js" />
+    <Content Include="Scripts\summernote\test\unit\base\core\range.spec.js" />
+    <Content Include="Scripts\summernote\test\unit\base\editing\style.spec.js" />
+    <Content Include="Scripts\summernote\test\unit\base\editing\Table.spec.js" />
+    <Content Include="Scripts\summernote\test\unit\base\module\Codeview.spec.js" />
+    <Content Include="Scripts\summernote\test\unit\base\module\Editor.spec.js" />
+    <Content Include="Scripts\summernote\test\unit\base\module\Fullscreen.spec.js" />
+    <Content Include="Scripts\summernote\test\unit\bs\module\Buttons.spec.js" />
+    <Content Include="Scripts\summernote\test\unit\bs\module\VideoDialog.spec.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Reservation\ListReservations.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Reservation\UpdateReservation.cshtml" />
+    <Content Include="Views\Contact\ListContacts.cshtml" />
+    <Content Include="Views\Contact\InsertContact.cshtml" />
+    <Content Include="Views\Contact\UpdateContact.cshtml" />
+    <Content Include="Views\Shared\_TopMenuPartial.cshtml" />
+    <Content Include="Scripts\summernote\.agignore" />
+    <Content Include="Scripts\summernote\.editorconfig" />
+    <Content Include="Scripts\summernote\.eslintrc" />
+    <Content Include="Scripts\summernote\.npmignore" />
+    <Content Include="Scripts\summernote\.travis.yml" />
+    <Content Include="Scripts\summernote\CODE_OF_CONDUCT.md" />
+    <Content Include="Scripts\summernote\CONTRIBUTING.md" />
+    <Content Include="Scripts\summernote\dist\font\summernote.eot" />
+    <Content Include="Scripts\summernote\dist\font\summernote.ttf" />
+    <Content Include="Scripts\summernote\dist\font\summernote.woff" />
+    <Content Include="Scripts\summernote\dist\summernote-bs4.js.map" />
+    <Content Include="Scripts\summernote\dist\summernote-lite.js.map" />
+    <Content Include="Scripts\summernote\dist\summernote.js.map" />
+    <Content Include="Scripts\summernote\examples\symbols_mathematical-symbols_Greek-letters.json" />
+    <Content Include="Scripts\summernote\ISSUE_TEMPLATE.md" />
+    <Content Include="Scripts\summernote\LICENSE" />
+    <Content Include="Scripts\summernote\MAINTAIN.md" />
+    <Content Include="Scripts\summernote\package.json" />
+    <Content Include="Scripts\summernote\PULL_REQUEST_TEMPLATE.md" />
+    <Content Include="Scripts\summernote\README.md" />
+    <Content Include="Scripts\summernote\src\icons\templates\summernote.json" />
+    <Content Include="Scripts\summernote\src\less\elements.less" />
+    <Content Include="Scripts\summernote\src\less\elements.scss" />
+    <Content Include="Scripts\summernote\src\less\lite-ui\all.less" />
+    <Content Include="Scripts\summernote\src\less\lite-ui\btn-group.less" />
+    <Content Include="Scripts\summernote\src\less\lite-ui\buttons.less" />
+    <Content Include="Scripts\summernote\src\less\lite-ui\common.less" />
+    <Content Include="Scripts\summernote\src\less\lite-ui\dropdown.less" />
+    <Content Include="Scripts\summernote\src\less\lite-ui\form.less" />
+    <Content Include="Scripts\summernote\src\less\lite-ui\mixins.less" />
+    <Content Include="Scripts\summernote\src\less\lite-ui\mixins\buttons.less" />
+    <Content Include="Scripts\summernote\src\less\lite-ui\modal.less" />
+    <Content Include="Scripts\summernote\src\less\lite-ui\popover.less" />
+    <Content Include="Scripts\summernote\src\less\lite-ui\toolbar.less" />
+    <Content Include="Scripts\summernote\src\less\lite-ui\tooltip.less" />
+    <Content Include="Scripts\summernote\src\less\lite-ui\variables.less" />
+    <Content Include="Scripts\summernote\src\less\summernote-bs4.less" />
+    <Content Include="Scripts\summernote\src\less\summernote-bs4.scss" />
+    <Content Include="Scripts\summernote\src\less\summernote-lite.less" />
+    <Content Include="Scripts\summernote\src\less\summernote.less" />
+    <Content Include="Scripts\summernote\src\less\summernote.scss" />
+    <Content Include="Scripts\summernote\test\libs\.gitkeep" />
+    <Content Include="Scripts\summernote\tsconfig.json" />
+    <Content Include="Views\Shared\Modal.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+    <Folder Include="Views\Culture\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RES.BusinessLogic.Core\RES.BusinessLogic.Core.csproj">
+      <Project>{a5b2c8df-6a56-47f4-804e-0e0808f5720d}</Project>
+      <Name>RES.BusinessLogic.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RES.Commons.Core\RES.Commons.Core.csproj">
+      <Project>{df936096-63f1-4ff9-bcb0-089e9f389aca}</Project>
+      <Name>RES.Commons.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RES.DataAccess.Core\RES.DataAccess.Core.csproj">
+      <Project>{74010c9d-452e-42d2-ba56-fa8911f2f6ed}</Project>
+      <Name>RES.DataAccess.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RES.DataAccess.Interfaces\RES.DataAccess.Interfaces.csproj">
+      <Project>{f3710c49-e227-427a-b369-b3f6755dafa6}</Project>
+      <Name>RES.DataAccess.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>65473</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:65473/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

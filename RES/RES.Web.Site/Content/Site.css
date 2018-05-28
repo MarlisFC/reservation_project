@@ -1,0 +1,479 @@
+﻿body {
+    background-color: #EFEFEF !important;
+}
+
+h1, h2 {
+    font-family: Calibri;
+    color: red;
+}
+
+
+
+tr {
+    background-color: #efefef;
+    border: 1px solid #ddd;
+    margin:10px!important;
+}
+td {
+    padding: 0 0 0 10px !important;
+    vertical-align: middle !important;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    /*padding-left: 15px;
+    padding-right: 15px;*/
+}
+
+.reveal-modal {
+    visibility: hidden;
+    top: 50px;
+    left: 50%;
+    margin-left: -305px;
+    width: 580px;
+    background: #ffffff;
+    position: absolute;
+    z-index: 1051;
+    padding: 15px 15px 15px 15px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0 0 10px rgba(0,0,0,.4);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,.4);
+    -box-shadow: 0 0 10px rgba(0,0,0,.4);
+}
+.reveal-modal.small {
+    width: 200px;
+    margin-left: -120px;
+}
+
+.reveal-modal.medium {
+    width: 400px;
+    margin-left: -220px;
+}
+
+.reveal-modal.large {
+    width: 650px;
+    margin-left: -340px;
+}
+
+.reveal-modal.xlarge {
+    width: 800px;
+    margin-left: -420px;
+}
+
+.reveal-modal .close-reveal-modal {
+    font-size: 16px;
+    line-height: .5;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #ADD6E8;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.term-mod {
+width: 100%;
+overflow: visible;
+}
+
+.term-mod .term-title {
+    font-size: 18px;
+    color: #003964;
+    width: 100%;
+    clear: both;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    border-bottom: 1px solid #AAC5D0;
+}
+
+.term-mod .term-subtitle {
+    margin-bottom: 5px;
+}
+
+.term-mod .term-content {
+    font-size: 12px;
+    overflow: hidden;
+    background: #EFEFEF;
+    color: #000000;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.term-mod .term-content .term-wrapper {
+}
+
+.term-mod .term-content .show {
+    width: 100%;
+}
+
+    .term-mod .term-content .show input {
+        float: right;
+    }
+
+.header {
+    width: 100%;
+    height: 125px;
+    background: url(images/banner.png);
+}
+
+.header .header-container {
+    max-width: 1024px;
+    margin: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.header .header-container .logo {
+    height: 90px;
+    float: left;
+    display: flex;
+    margin: 20px;
+}
+
+.header .header-container .logo .p {
+    color: white;
+    display: flex;
+    font-size: 70px;
+    font-family: Calibri;
+}
+.image__ {
+    height: 15px;
+    margin: 3px 0 0 7px;
+    position: absolute;
+}
+
+.image-contact__ {
+    height: 25px;
+    margin: 3px 0 0 7px;
+    position: absolute;
+}
+
+.input__ {
+    width: -moz-available;
+    padding-left: 40px;
+    border: 1px solid #aaa;
+    border-radius: 2px;
+    height: 40px !important;
+}
+.red-button {
+    font-weight: bold;
+    font-size: 12px;
+    color: white;
+    text-transform: uppercase;
+    background-color: #db1717;
+    width: 200px;
+    float:right !important;
+}
+
+.contact-us-btn {
+    /*background: #73C24D;
+border: 1px solid #7BB062;
+    border-radius: 3px;
+padding: 5px 15px;*/
+    font-weight: bold;
+    font-size: 12px;
+    color: #023761;
+    text-transform: uppercase;
+}
+
+a.page-btn {
+    background-color: grey;
+    border: 1px solid grey;
+    border-radius: 0px;
+    padding: 5px 15px;
+    font-size: 12px;
+    color: white;
+    text-transform: uppercase;
+    float: inline-start;
+    text-decoration: none !important;
+    margin: 10px 10px 10px 0px;
+}
+
+a.page-btn:hover {
+    color: white;
+    text-decoration: none;
+}
+a.page-btn:visited {
+    color: white;
+    text-decoration: none !important;
+}
+.letter {
+    color: #808080;
+    margin: 0px;
+}
+
+.subtitle {
+    text-align: inherit;
+    color: #db1717;
+    font-size: 20px
+}
+
+.five-start {
+    icon: url(images/yellowStart.png);
+}
+.div_white {
+    color: white;
+    display: flex;
+    font-size: 15px;
+}
+
+.p-bold  {   
+    font-weight: bold;    
+}
+.disable {
+    color: #c8c1c1;
+    font-weight: inherit
+}
+.enable {
+    color: black;
+    font-weight: inherit;
+}
+.enable:hover {
+    text-decoration:none;
+}
+
+.p-subtitle {
+    color: white;
+    padding: 0px 0 0 0;
+    display:block;
+    margin:0px;
+}
+
+.body__ {
+    background-color: #F8F8F8;
+    margin-top: 15px;
+    padding: 15px 0;
+}
+
+select.dropdown__ {
+    padding: 0 0 0 30px;
+    height: 25px;
+    color: #808080;
+}
+.favorite {
+    margin-left: 5px;
+}
+.td__ {
+    padding-top: 20px!important;
+}
+
+select.dropdown__ :hover {
+    display: none !important;
+    background-color: gray !important;
+}
+
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+#heading {
+    cursor: pointer;
+    padding: 8px;
+    background-color: #fff;
+    border-radius: 4px;
+    padding-right: 8px;
+}
+
+.hiddenheading {
+    display: none;
+}
+
+a[data-command='p'],
+a[data-command='h1'],
+a[data-command='h2'],
+a[data-command='h3'],
+a[data-command='h4'],
+a[data-command='h5'],
+a[data-command='h6'],
+a[data-command='insertimage'],
+a[data-command='undo'],
+a[data-command='redo'],
+a[data-command='bold'],
+a[data-command='italic'],
+a[data-command='underline'],
+a[data-command='strikeThrough'],
+a[data-command='justifyLeft'],
+a[data-command='justifyCenter'],
+a[data-command='justifyRight'],
+a[data-command='justifyFull'],
+a[data-command='quote'],
+a[data-command='insertUnorderedList'],
+a[data-command='insertOrderedList'],
+a[data-command='createlink'],
+a[data-command='unlink'],
+a[data-command='subscript'],
+a[data-command='superscript'] {
+    color: #000;
+    padding-right: 8px;
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+span a {
+    font-size: 0.8rem;
+}
+
+span a:nth-of-type(odd) {
+    border-right: 1px solid #9D9D9D;
+}
+
+#counter {
+    height: 400px;
+    overflow-y: auto;
+}
+
+.pagination__ {
+   
+}
+
+.pagination__ a {
+    color: black;
+    float: left;
+    padding: 5px 10px;
+    text-decoration: none;
+    border: solid 1px #ddd;
+    border-radius: 5px;
+    background-color: #efefef;
+    margin-left:3px;
+}
+
+.pagination__ a.active {
+    background-color: #575353 !important;
+    color: white !important;
+    text-decoration: none;
+}
+
+.pagination__ a:hover:not(.active) {
+    background-color: #ddd;
+    text-decoration: none;
+    color: black;
+}
+
+
+.no_padding {
+    padding: 0px !important
+}
+
+.text-header a {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+.text-header  a:hover{
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.contacts-table {
+    margin: 5px;
+}
+
+
+/*-----------------Header for low resoution screen--------------------------------*/
+@media screen and (max-width: 480px) {
+    .header .header-container .logo {
+    margin: 10px;
+}
+
+    .red-button {
+        width: -moz-available;
+    }
+    .subtitle {
+        position: absolute;
+    }
+    .header .header-container .logo .p {
+        color: white;
+        display: flex;
+        font-size: 30px;
+    }
+td {
+    font-size:12px;
+}
+.td__ {
+    padding-top: 0px !important;
+}
+a.page-btn {
+    padding: 5px 10px;
+    font-size: 10px;
+}
+.favorite {
+    margin-top: 20px;
+}
+}
+.ec-stars-wrapper {
+   
+    font-size: 0;
+    display: inline-block;
+}
+
+.ec-stars-wrapper-fix {
+    color: #dac52a !important;
+       
+}
+
+.ec-stars-wrapper a {
+    text-decoration: none;
+    display: inline-block;
+        font-size: 32px;
+    font-size: 2rem;
+    color: #888;
+}
+
+.ec-stars-wrapper:hover a {
+    color: #dac52a;
+    text-decoration:none;
+}
+  
+.ec-stars-wrapper > a:hover ~ a {
+    color: #888;
+}
+
+/*-----------------Header for low resoution screen--------------------------------*/
+
+@media screen and (max-width: 840px) {
+.header {
+    height: 250px;
+}
+   
+
+.no_padding {
+    margin: 0px !important
+}
+
+   
+
+.header .header-container {
+}
+
+.header .header-container .logo {
+    border-right: none;
+    margin-top: 5px;
+    float: left;
+}
+
+.header {
+    height: 60px;
+}
+
+.header .header-container .logo .p {
+    color: white;
+    display: flex;
+    font-size: 30px;
+}
+       
+}

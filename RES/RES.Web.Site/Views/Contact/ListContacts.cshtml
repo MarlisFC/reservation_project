@@ -1,0 +1,179 @@
+﻿@model RES.BusinessLogic.Core.Entities.ContactList
+@using RES.Commons.Core.Resource;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<table class="table contacts-table">
+    <tr class="text-header">
+        <th>
+            <a href="@Url.Action("ListContacts", "Contact", new { sortCode= 1 })"> @Resources.ContactName</a>
+        </th>
+        <th>
+            <a href="@Url.Action("ListContacts", "Contact", new { sortCode = 2})"> @Resources.Phone</a>
+        </th>
+        <th>
+            <a href="@Url.Action("ListContacts", "Contact", new { sortCode = 3 })"> @Resources.BirthDate</a>
+        </th>
+        <th>
+            <a href="@Url.Action("ListContacts", "Contact", new { sortCode = 4 })"> @Resources.ContactType</a>
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model.List)
+    {
+        <tr>
+            <td class="col-xs-12 col-sm-2">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="col-xs-12 col-sm-2">
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td class="col-xs-12 col-sm-2">
+                @Html.DisplayFor(modelItem => item.Birthdate)
+            </td>
+
+            <td class="col-xs-12 col-sm-2">
+                @Html.DisplayFor(modelItem => item.ContactType.Value)
+            </td>
+            <td class="col-xs-12 col-sm-2">
+                <div style="float: inline-end">
+                    <a class="page-btn" href="@Url.Action("UpdateContact", "Contact", new { id = item.Id })">@Resources.Edit</a>
+                    <a class="page-btn" href="javascript:void(0);" onclick="show(@item.Id)">@Resources.Delete</a>
+                   
+                </div>
+
+            </td>
+        </tr>
+    }
+
+</table>
+<div id="term-modal" class="reveal-modal">
+    <a class="close-reveal-modal">&times;</a>
+    <div class="term-mod">
+        <div class="term-title">@Resources.TermTitle</div>
+        <div class="term-content">
+            <div class="term-wrapper">
+                @Resources.Term
+            </div>
+            <div class="show page-btn"><input type="button" class="send-btn" value="@Resources.Accept" id="button-send" /></div>
+        </div>
+    </div>
+</div>
+<div class="pagination__">
+
+    <a href="@Url.Action("ListContacts", "Contact", new { page = 0,sortCode=Model.SortByCode })" aria-label="Previous" onclick="SetPage(@ViewBag.Page-1)">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+    </a>
+
+    @for (int i = 0; i < Model.TotalPage; i++)
+    {
+        var page = i + 1;
+        <a href="@Url.Action("ListContacts", "Contact", new { page = i,sortCode=Model.SortByCode })" onclick="SetPage(@page)" class="@(ViewBag.Page == i ? "active" : null)">@page </a>
+    }
+
+    <a href="@Url.Action("ListContacts", "Contact", new { page = Model.TotalPage-1,sortCode=Model.SortByCode })" aria-label="Next" onclick="SetPage(@ViewBag.Page+1)">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+    </a>
+
+</div>
+
+<script>
+
+
+    function show(identity) {
+        id = identity;
+        $('#term-modal').modal();
+        $('#term-modal').css({ 'top': $(document).scrollTop() + 50 + 'px', 'opacity': 1, 'visibility': 'visible' });
+        $('.term-wrapper').slimscroll({
+            height: '320px',
+            width: '400px',
+            color: '#003964',
+            alwaysVisible: true,
+            railVisible: true,
+            railColor: '#CCCCCC',
+            opacity: 1
+        });
+
+    }
+     var id = 1;
+     var urlDeleteContact = "@Url.Action("DeleteContact", "Contact")";
+     var urlListContacts = "@Url.Action("ListContacts", "Contact")";
+
+    function deleteContact() {
+
+        $.ajax({
+
+            url: urlDeleteContact ,
+            type: "POST",
+            data: '{id: ' + id + '}',
+            contentType: "application/json",
+            success: function (result) {
+                window.location.href = urlListContacts;
+                //$('#term-modal').modal('hide');
+            },
+            error: function (xmlHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    }
+
+        $('.close-reveal-modal').on('click', function (e) {
+            $('#term-modal').modal('hide');
+        });
+
+
+        $('#button-send').on('click', function (e) {
+             deleteContact();
+           
+        });
+
+        $('.modal-backdrop').on('click', function (e) {
+            $('#term-modal').modal('hide');
+        });
+        $('body').keyup(function (e) {
+            if (e.which === 27) { $('#term-modal').modal('hide'); } // 27 is the keycode for the Escape key
+        });
+
+    ko.bindingHandlers.value = {
+        init: function (element, valueAccessor, allBindingsAccessor, viewModel) {
+            // Register change callbacks to update the model
+            // if the control changes.
+            ko.utils.registerEventHandler(element, "change", function () {
+                var value = valueAccessor();
+                value((element.value));
+                var s = element.value;
+                var p = viewModel.page;
+                console.log("p", p);
+                console.log("init");
+                window.location.href = window.location.origin + "/en-US/Reservation/ListReservations/?sortCode=" + s + "&page=" + p;
+            });
+        },
+        // Update the control whenever the view model changes
+        update: function (element, valueAccessor, allBindingsAccessor, viewModel) {
+
+            var s = element.value;
+            element.value = s;
+
+        }
+    };
+
+    function SetPage(page) {
+        viewModel.page = page;
+    }
+
+    var viewModel = {
+        sortCode: ko.observable(),
+        page: 0
+    };
+
+
+    ko.applyBindings(viewModel);
+</script>

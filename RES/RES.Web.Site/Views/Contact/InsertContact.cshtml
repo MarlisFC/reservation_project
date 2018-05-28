@@ -1,0 +1,101 @@
+﻿@model RES.BusinessLogic.Core.Entities.ContactModel
+@using RES.Commons.Core.Resource;
+@using RES.BusinessLogic.Core.Entities;
+@{
+     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class=" container">
+        <div class="row">
+            <div class="col-xs-12 col-md-3 col-sm-6 no_padding" >
+                <img class="image-contact__" src="@Url.Content("~/Content/images/name.png")">
+                @Html.EditorFor(model => model.Name, new {  htmlAttributes = new { @class = "input__", placeHolder =string.Concat( Resources.ContactName,"  ..." ), data_bind = "value : Name" } })
+                @Html.ValidationMessageFor(model => model.Name,"", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-xs-12 col-md-3 col-sm-6 no_padding" >
+                <img class="image-contact__" src="@Url.Content("~/Content/images/type.png")">
+                @Html.DropDownListFor(m => m.ContactTypeId, new SelectList((IEnumerable<ContactType>)ViewBag.ContactTypes, "Id", "Value"), new { data_bind = "value : ContactTypeId", @class = "input__", placeHolder = Resources.ContactName })
+                
+            </div>
+
+            <div class="col-xs-12 col-md-3 col-sm-6 no_padding" >
+                <img class="image-contact__" src="@Url.Content("~/Content/images/phone.png")">
+                @Html.EditorFor(model => Model.Phone, new { htmlAttributes = new { @class = "input__", placeHolder =string.Concat( Resources.Phone," :"), data_bind = "value : Phone" } })
+                @Html.ValidationMessageFor(model => model.Phone,"", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-xs-12 col-md-3 col-sm-6 no_padding" >
+                <img class="image-contact__" src="@Url.Content("~/Content/images/calendar.png")">
+                <input type="date"  name="bdaytime" class="input__" placeholder=@Resources.BirthDate data-bind="value : Birthdate">
+                @Html.ValidationMessageFor(model => model.Birthdate, "", new { @class = "text-danger" })
+        </div>            
+        </div>
+        <div class="row">
+            <div class="form-group" >
+               <div class="col-md-12 no_padding ">
+
+                    @Html.TextAreaFor(m => m.Description, new {  rows = "20", style = "resize:none;width:400px;", placeholder = Html.DisplayNameFor(m=> m.Description),  @class = "form-control input-lg textarea-editor"})
+               </div>
+            </div>
+        </div>
+       <div class="row">
+           <div class="col-xs-12 col-sm-12 col-md-12" >
+               <a  class="btn red-button" href="javascript:void(0);"   onclick="create()" >@Resources.Send</a>
+           </div>
+       </div>
+    </div>
+}
+
+    <script>
+
+        var urlInsertContact = "@Url.Action("InsertContact", "Contact")";
+        var urlListReservations = "@Url.Action("ListReservations", "Reservation")";
+
+    var createModel = {
+        Name: ko.observable(),
+        ContactTypeId: ko.observable(),
+        Birthdate: ko.observable,
+        Phone: ko.observable(),
+        Description: ""
+    };
+
+
+    ko.applyBindings(createModel);
+
+    $(document).ready(function () {
+        $('.textarea-editor').Editor();
+    });
+
+   function create() {
+        createModel.Description = $('.textarea-editor').Editor("getText");
+        var json = ko.toJS(createModel);
+
+        $.ajax({
+
+            url: urlInsertContact,
+
+            type: "POST",
+            data: JSON.stringify(json),
+            contentType: "application/json",
+            success: function (result) {
+                window.location.href = urlListReservations;
+            },
+            error: function (xmlHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    }
+
+
+
+    </script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

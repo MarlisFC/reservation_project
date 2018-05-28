@@ -1,0 +1,81 @@
+﻿@using RES.Commons.Core.Resource
+@using RES.Web.Site.Extensions
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Resources.AppTitle </title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/Script-custom-editor")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/knockout-3.4.2.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/jquery.rating.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/jquery.qtip.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/jquery.mask.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/editor.css" />
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+
+</head>
+<body >
+    <div class="header">
+        <div class="header-container">
+            <div class="logo">
+                <div class="p">
+                    <p style="font-weight:bold">@Resources.BannerTitlePart1</p><p>@Resources.BannerTitlePart2</p>
+                </div>
+                <div class="hidden-xs">
+                    <img style="margin: 35px 0 0 10px" src="@Url.Content("~/Content/images/description.png")">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="background-color:#F8F8F8">
+        <div class="container" style="padding:0px">
+            <div class="row" >
+                <div class="col-xs-12 col-sm-10"></div>
+                <div class="col-xs-12 col-sm-3">
+                    <p class="subtitle">@ViewBag.Title</p>
+                </div>
+                <div class="col-xs-12 col-sm-6 hidden-xs">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="col-sm-3 ">
+                    <div class="hidden-xs" style="float: inline-end">
+                        <a class="page-btn" href="@Url.Content(string.Format("/{0}/{1}/{2}", ViewBag.Language, ViewBag.Controller, ViewBag.Method))">@ViewBag.Title2</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content body__">
+        
+        @RenderBody()
+        <hr />
+    </div>
+    <script type="text/javascript" src="~/Scripts/jquery-2.0.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-ui-1.10.3.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Plugin/jquery-qtip/jquery.qtip.js"></script>
+    <script type="text/javascript" src="~/Scripts/Plugin/jquery-mask/jquery.mask.js"></script>
+    <script type="text/javascript" src="~/Scripts/Plugin/jquery-icheck/jquery.icheck.js"></script>
+    <script type="text/javascript" src="~/Scripts/Plugin/loaded/imagesloaded.pkg.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Plugin/bootstrap-dropdown/bootstrap-hover-dropdown.js"></script>
+    <script type="text/javascript" src="~/Scripts/Plugin/select2/select2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Plugin/2ls/2ls.js"></script>
+    <script type="text/javascript" src="~/Scripts/underscore-min.js"></script>
+    <script type="text/javascript" src="~/Scripts/editor.js"></script>
+    
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,121 @@
+﻿@model RES.BusinessLogic.Core.Entities.ContactModel
+@using RES.BusinessLogic.Core.Entities;
+@using RES.Commons.Core.Resource
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class=" container">
+        <div class="row">
+            <div class="col-xs-12 col-md-3 col-sm-6 no_padding">
+                <img class="image-contact__" src="@Url.Content("~/Content/images/name.png")">
+                @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "input__", data_bind = "value : Name" } })
+
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-xs-12 col-md-3 col-sm-6 no_padding">
+                <img class="image-contact__" src="@Url.Content("~/Content/images/type.png")">
+                @Html.DropDownListFor(m => m.ContactTypeId, new SelectList((IEnumerable<ContactType>)ViewBag.ContactTypes, "Id", "Value"), new { @class = "input__", data_bind = "value : ContactTypeId" })
+                @Html.ValidationMessageFor(model => model.ContactTypeId, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-xs-12 col-md-3 col-sm-6 no_padding">
+                <img class="image-contact__" src="@Url.Content("~/Content/images/phone.png")">
+                @Html.EditorFor(m => m.Phone, new { htmlAttributes = new { @class = "input__", data_bind = "value : Phone"  } })
+                @*<input class="input__" data-bind="value : Phone">*@
+                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-xs-12 col-md-3 col-sm-6 no_padding">
+                <img class="image-contact__" src="@Url.Content("~/Content/images/calendar.png")">
+                @*<input type="date" name="bdaytime" class="input__" placeholder=@Resources.BirthDate data-bind="value : Birthdate">*@
+                @Html.EditorFor(m => m.Birthdate, new { htmlAttributes = new { @class = "input__", type = "date", data_bind = "value : Birthdate" } })
+                @Html.ValidationMessageFor(m => m.Birthdate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-12 no_padding ">
+                    @Html.TextAreaFor(m => m.Description, new { rows = "20", style = "resize:none;width:400px;", @class = "form-control input-lg textarea-editor" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <a class="btn red-button" onclick="update()">@Resources.Accept</a>
+            </div>
+        </div>
+    </div>
+    <div class="hide">
+        <input type="text" hidden id="id_txt" value="@Model.Id" style="height:1px" /><br />
+        <input type="text" hidden id="name_txt" value="@Model.Name" style="height:1px" /><br />
+        <input type="text" hidden id="description_txt" value="@Model.Description" style="height:1px" /><br />
+        <input type="text" hidden id="birthdate_txt" value="@Model.Birthdate" style="height:1px" /><br />
+        <input type="text" hidden id="phone_txt" value="@Model.Phone" style="height:1px" /><br />
+    </div>
+}
+
+    <script>
+
+    $(document).ready(function () {
+        $('.textarea-editor').Editor();
+
+        var description = $('#description_txt').val();
+        $('.textarea-editor').Editor("setText", description);
+        init();
+    });
+
+    var urlUpdateContact = "@Url.Action("UpdateContact", "Contact")";
+    var urlListContacts = "@Url.Action("ListContacts", "Contact")";
+
+    var updateModel = {
+        Name: ko.observable(),
+        ContactTypeId: ko.observable(),
+        Birthdate: ko.observable(),
+        Phone: ko.observable(),
+        Description: ""
+    };
+
+
+    ko.applyBindings(updateModel);
+
+
+    function init() {
+       //updateModel.Id($('#id_txt').val());
+        updateModel.Name($('#name_txt').val());
+        updateModel.Birthdate($('#birthdate_txt').val());
+        updateModel.Phone($('#phone_txt').val());        
+    }
+
+    function update() {
+        updateModel.Description = $('.textarea-editor').Editor("getText");
+        var id = $('#id_txt').val();
+        var json = ko.toJS(updateModel);
+        $.ajax({
+
+            url: urlUpdateContact ,
+            type: "POST",
+            data: JSON.stringify(json),
+            contentType: "application/json",
+            success: function (result) {
+                window.location.href = urlListContacts;
+            },
+            error: function (xmlHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    }
+
+
+
+    </script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
