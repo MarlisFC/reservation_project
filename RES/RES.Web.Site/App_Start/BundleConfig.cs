@@ -26,6 +26,14 @@ namespace RES.Web.Site
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/css-rtl").Include(
+                     "~/Content/bootstrap-rtl.css",
+                     "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap-rtl").Include(
+                     "~/Scripts/bootstrap-rtl.js",
+                     "~/Scripts/respond.js"));
         }
     }
 }

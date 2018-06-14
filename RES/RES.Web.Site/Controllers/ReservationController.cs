@@ -7,10 +7,11 @@ using RES.DataAccess.Interfaces.Interfaces;
 using RES.BusinessLogic.Core.Entities;
 using System.Threading;
 using RES.Commons.Core.Resource;
+using RES.Web.Site.Extensions;
 
 namespace RES.Web.Site.Controllers
 {
-    public class ReservationController : Controller
+    public class ReservationController : BaseController
     {
         // GET: Reservation
         private IReservationRepository _repo;
@@ -40,47 +41,9 @@ namespace RES.Web.Site.Controllers
             return null;
         }
 
-        [HttpGet]
-        [ActionName("ReservationDetails")]
-        public ActionResult GetReservationById(int id)
-        {
-            Reservation reservation = GetReservationDetails(id);
-            return View("ReservationDetails", reservation);
-        }
-
         public Reservation GetReservationDetails(int id)
         {
             return _repo.GetReservationById(id);
-        }
-
-        [HttpGet]
-        [ActionName("InsertReservation")]
-        public ActionResult InsertReservation()
-        {
-            ViewBag.TiTle = Resources.ReservationCreate;
-            ViewBag.TiTle2 = Resources.ReservationList;
-            ViewBag.Method = "ListReservations";
-            ViewBag.Controller = "Reservation";
-            ViewBag.Language = Thread.CurrentThread.CurrentCulture;
-
-            return View();
-        }
-
-        [HttpPost]
-        [ActionName("InsertReservation")]
-        public ActionResult InsertReservation(Reservation newReservation)
-        {
-            ViewBag.TiTle = Resources.ReservationCreate;
-            ViewBag.TiTle2 = Resources.ReservationList;
-            ViewBag.Method = "ListReservations";
-            ViewBag.Controller = "Reservation";
-            ViewBag.Language = Thread.CurrentThread.CurrentCulture;
-
-            if (!ModelState.IsValid) return View("InsertReservation", newReservation);
-            var reservationId = _repo.InsertReservation(newReservation);
-            if (reservationId > 0)
-                return RedirectToAction("ListReservations", "Reservation");
-            return View("InsertReservation", newReservation);
         }
 
         [HttpGet]
@@ -92,12 +55,17 @@ namespace RES.Web.Site.Controllers
             ViewBag.Method = "ListReservations";
             ViewBag.Controller = "Reservation";
             ViewBag.Language = Thread.CurrentThread.CurrentCulture;
-
+            ViewBag.Contacts = _repo.ContactListForReservation();
+            ViewBag.Places = _repo.PlaceList();
+           
             Reservation reservation = GetReservationDetails(id);
+            ViewBag.Time =reservation.Date.TimeOfDay;
+            ViewBag.Date = DateUtil.getDate(reservation.Date);
+
             return View(reservation);
         }
 
-        [HttpPut]
+        [HttpPost]
         [ActionName("UpdateReservation")]
         public ActionResult UpdateReservation(Reservation exReservation)
         {
@@ -106,20 +74,25 @@ namespace RES.Web.Site.Controllers
             ViewBag.Method = "ListReservations";
             ViewBag.Controller = "Reservation";
             ViewBag.Language = Thread.CurrentThread.CurrentCulture;
+            ViewBag.Contacts = _repo.ContactListForReservation();
+            ViewBag.Places = _repo.PlaceList();
 
             if (!ModelState.IsValid) return View("UpdateReservation", exReservation);
             var reservationId = _repo.UpdateReservation(exReservation);
-            if (reservationId > 0)
+            if (reservationId > 0) 
                 return RedirectToAction("ListReservations", "Reservation");
+                   
             return View("UpdateReservation", exReservation);
         }
 
-        [HttpDelete]
-        [ActionName("DeleteReservation")]
-        public ActionResult DeleteReservation(int id)
-        {
-            var reservationId = _repo.DeleteReservation(id);
-            return RedirectToAction("ListReservations", "Reservation");
+        [HttpPost]
+        public ActionResult AddFavorite(int id)
+        {   
+            if (_repo.AddFavorite(id) )
+                return RedirectToAction("ListReservations", "Reservation");
+            return  RedirectToAction("ListReservations", "Reservation");
         }
+
+
     }
 }

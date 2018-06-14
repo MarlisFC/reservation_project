@@ -86,6 +86,8 @@ namespace UI.App_Start
                     kernel.Bind<IDbConnection>().To<SqlConnection>().InRequestScope();
                     kernel.Bind<IReservationRepository
                         >().To<RES.DataAccess.Core.Repository.Drapper.Mssql.ReservationSqlRepository>().InRequestScope().WithConstructorArgument("conString", conString);
+                    kernel.Bind<IContactRepository
+                        >().To<RES.DataAccess.Core.Repository.Drapper.Mssql.ContactSqlRepository>().InRequestScope().WithConstructorArgument("conString", conString);
 
                 }
                 else if (targetDataBase.ToLower().Equals("oracle"))

@@ -10,7 +10,6 @@ namespace RES.DataAccess.Interfaces.Interfaces
 {
     public interface IContactRepository : IRepositoryBase
     {
-        List<Contact> GetContact();
         ContactModel GetContactById(int id);
         int InsertContact(ContactModel contact);
         int UpdateContact(ContactModel contact);

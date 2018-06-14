@@ -1,69 +1,146 @@
-﻿@model RES.BusinessLogic.Core.Entities.Reservation
+﻿@using RES.BusinessLogic.Core.Entities;
+@model RES.BusinessLogic.Core.Entities.Reservation
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
-<h2>UpdateReservation</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Reservation</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
 
-        <div class="form-group">
-           
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+    <div class=" container">
+        <div class="row">
+            <div class="col-xs-12 col-md-3 col-sm-6 no_padding">               
+                <img class="image-contact__" src="@Url.Content("~/Content/images/calendar.png")">
+                <input name="rdaytime" class="datecontrol input-validation-error input__" id="rdaytime" aria-invalid="true" value="@ViewBag.Date" aria-required="true" type="text" placeholder="@Resources.Date">
+                <input name="rtime" class=" input__  " id="rtime" aria-invalid="true" value="@ViewBag.Time" aria-required="true" type="time">
                 @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsFavorite, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsFavorite)
-                    @Html.ValidationMessageFor(model => model.IsFavorite, "", new { @class = "text-danger" })
+            <div class="col-xs-12 col-md-3 col-sm-6 no_padding">
+                <img class="image-contact__" src="@Url.Content("~/Content/images/greyStart.png")">
+                @Html.EditorFor(model => model.Ranking, new { htmlAttributes = new { @class = "input__", type = "number" , data_bind = "value : Ranking" } })
+                @Html.ValidationMessageFor(model => model.Ranking, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-xs-12 col-md-3 col-sm-6 no_padding">
+                <img class="image-contact__" src="@Url.Content("~/Content/images/name.png")">
+                @Html.DropDownListFor(m => m.ContactId, new SelectList((IEnumerable<Contact>)ViewBag.Contacts, "Id", "Name"), new { @class = "input__", data_bind = "value : ContactId" })
+                @Html.ValidationMessageFor(model => model.ContactId, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-xs-12 col-md-3 col-sm-6 no_padding">
+                <img class="image-contact__" src="@Url.Content("~/Content/images/reservation.png")">
+                @Html.DropDownListFor(m => m.PlaceId, new SelectList((IEnumerable<Place>)ViewBag.Places, "Id", "Name"), new { @class = "input__", data_bind = "value :PlaceId" })
+                @Html.ValidationMessageFor(model => model.PlaceId, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-xs-12 col-md-6 col-sm-6 no_padding">
+                <div>
+                    <img class="image-contact__" src="@Url.Content("~/Content/images/greyHeart.png")" style="margin-left:20px;">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.IsFavorite, new { htmlAttributes = new { id = "fav", type = "checkbox" } })
+                        @Html.ValidationMessageFor(model => model.IsFavorite, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Ranking, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Ranking, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Ranking, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-12 no_padding ">
+                    @Html.TextAreaFor(m => m.Description, new { rows = "20", style = "resize:none;width:400px;", @class = "form-control input-lg textarea-editor" })
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ContactId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ContactId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ContactId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <a class="btn red-button" onclick="update()">@Resources.Accept</a>
             </div>
         </div>
     </div>
+    <div class="hide">
+        <input type="text" hidden id="id_txt" value="@Model.Id" style="height:1px" /><br />       
+        <input type="text" hidden id="ranking_txt" value="@Model.Ranking" style="height:1px" /><br />
+        <input type="text" hidden id="contact_txt" value="@Model.ContactId" style="height:1px" /><br />
+        <input type="text" hidden id="place_txt" value="@Model.PlaceId" style="height:1px" /><br />
+        <input type="text" hidden id="favorite_txt" value="@Model.IsFavorite" style="height:1px" /><br />
+        <input type="text" hidden id="description_txt" value="@Model.Description" style="height:1px" /><br />
+        <input type="text" hidden id="id_lang" value="@ViewBag.Language" style="height:1px" /><br />
+    </div>
 }
 
+<script type="text/javascript">
 
+
+    $(document).ready(function () {
+        $('.textarea-editor').Editor();
+        var description = $('#description_txt').val();
+        $('.textarea-editor').Editor("setText", description);
+        init();   
+       
+        var lang = $('#id_lang').val();       
+        $(".datecontrol").datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+            weekStart: 1,
+            language: lang,
+            calendarWeeks: true
+        });       
+        if ($("#fav").is(':checked')) {
+            alert('Checked!');
+        }
+
+    });
+
+
+
+    var urlUpdateReservation = "@Url.Action("UpdateReservation", "Reservation")";
+    var urlListReservation = "@Url.Action("ListReservations", "Reservation")";
+
+    var updateModel = {
+        Date: "",
+        Ranking: ko.observable(),
+        ContactId: ko.observable(),
+        PlaceId: ko.observable(),
+        IsFavorite: false,
+        Description: ""
+    };
+
+
+    ko.applyBindings(updateModel);
+
+    function init() {
+        updateModel.Ranking($('#ranking_txt').val());
+        updateModel.ContactId($('#contact_txt').val());
+        updateModel.PlaceId($('#place_txt').val());      
+    }
+
+    function update() {
+        updateModel.Description = $('.textarea-editor').Editor("getText");
+        var date = $('#rdaytime').val() + " " + $('#rtime').val();
+        updateModel.Date = date;
+        var checked = $("#fav").is(":checked");
+        updateModel.IsFavorite = checked;
+       
+        var id = $('#id_txt').val();
+        var json = ko.toJS(updateModel);
+        $.ajax({
+            url: urlUpdateReservation ,
+            type: "POST",
+            data: JSON.stringify(json),
+            contentType: "application/json",
+            success: function (result) {
+                window.location.href = urlListReservation;
+            },
+            error: function (xmlHttpRequest, textStatus, errorThrown) {
+                setMessage("error", errorThrown);
+            }
+        });
+    }
+</script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

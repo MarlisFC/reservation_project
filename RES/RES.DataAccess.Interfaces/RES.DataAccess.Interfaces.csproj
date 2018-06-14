@@ -53,9 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\DapperRepositoryBase.cs" />
     <Compile Include="Base\IRepositoryBase.cs.cs" />
-    <Compile Include="Abstract\EFRepositoryBase.cs" />
     <Compile Include="Interfaces\IContactRepository.cs" />
     <Compile Include="Interfaces\IReservationRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

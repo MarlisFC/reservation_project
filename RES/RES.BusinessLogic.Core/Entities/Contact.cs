@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-using RES.Commons.Core.Resource;
+using RES.Commons.Core;
 namespace RES.BusinessLogic.Core.Entities
 {
     public class Contact

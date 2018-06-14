@@ -8,11 +8,11 @@ using RES.DataAccess.Interfaces.Interfaces;
 using RES.BusinessLogic.Core.Entities;
 using RES.Commons.Core.Resource;
 using System.Threading;
-using AutoMapper;
+
 
 namespace RES.Web.Site.Controllers
 {
-    public class ContactController : Controller
+    public class ContactController : BaseController
     {
         // GET: Reservation
         private IContactRepository _repo;
@@ -40,17 +40,6 @@ namespace RES.Web.Site.Controllers
                 Console.WriteLine(exception.Message);
             }
             return null;
-        }
-
-        [HttpGet]
-        [ActionName("ContactDetails")]
-        public ActionResult GetContactById(int id)
-        {
-            ContactModel contactModel = ContactDetails(id);
-            if(contactModel!=null)
-               return View("ContactDetails", contactModel);
-
-            return RedirectToAction("ListContacts", "Contact");
         }
 
         public ContactModel ContactDetails(int id)
@@ -84,17 +73,17 @@ namespace RES.Web.Site.Controllers
 
             if (!ModelState.IsValid) {                
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, Resources.MessageContactInvalid);
-            }                
+            }
 
-          
+            
             var contactId = _repo.InsertContact(newContact);
             if (contactId > 0)
                 return RedirectToAction("ListContacts", "Contact");
-
+                        
             return View("InsertContact", newContact);
         }
 
-       [HttpGet]
+        [HttpGet]
         [ActionName("UpdateContact")]
         public ActionResult UpdateContact(int id)
         {
@@ -118,14 +107,16 @@ namespace RES.Web.Site.Controllers
             ViewBag.Method = "ListContacts";
             ViewBag.Controller = "Contact";
             ViewBag.Language = Thread.CurrentThread.CurrentCulture;
-            ViewBag.ContactTypes = _repo.ContactTypeList();
+            ViewBag.ContactTypes = _repo.ContactTypeList();       
 
             if (!ModelState.IsValid)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, Resources.MessageContactInvalid);
 
+           
             var contactId = _repo.UpdateContact(exContactModel);
             if (contactId > 0)
                 return RedirectToAction("ListContacts", "Contact");
+                         
             return View("UpdateContact", exContactModel);
         }
 

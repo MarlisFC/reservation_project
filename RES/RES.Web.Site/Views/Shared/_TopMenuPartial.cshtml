@@ -1,41 +1,53 @@
-﻿@using  RES.Commons.Core.Resource
+﻿@using RES.Commons.Core.Resource
 
 
-<div class="dropdown">
-    @{
-        var current = Session != null && Session["CurrentLanguage"] != null ? Session["CurrentLanguage"].ToString() : RES.Web.Site.Properties.Settings.Default.DefaultLanguage;
-    }
-    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-        @if (current != "es-ES" && current != "es")
-        {
-            <span id="language">
-                @Resources.English
-            </span>
-        }
-        else if (current != "en-US" && current != "en")
-        {
-            <span id="language">
-                @Resources.Spanish
-            </span>
-        }
-        <img src="~/Content/images/down.png" class="drop-arrow" />
-    </a>
-    <ul class="dropdown-menu">
-        <li style="border-right: 0 !important; border-left: 0 none !important;">
-            @if (current == "es-ES" || current == "es")
+@{
+    var current = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+}
+
+<ul class="btn">
+
+    <li class="dropdown" >
+
+        <a href="javascript:void(0);" class="dropdown-toggle"  data-toggle="dropdown" >
+            @if (current != "es-ES" && current != "es")
             {
-                <a href="@Url.Action("ChangeLanguage", "Culture", new { language = "en"})">
+                <span id="language" style="color:white" >
                     @Resources.English
-                </a>
+                </span>
             }
-            else if (current == "en-US" || current == "en")
+            else if (current != "en-us" && current != "en")
             {
-                <a href="@Url.Action("ChangeLanguage", "Culture", new { language = "es"})">
+                <span id="language"   style="color:white">
                     @Resources.Spanish
-                </a>
+                </span>
             }
-        </li>      
-    </ul>
-</div>
+                <img src="~/Content/images/down.png" class="drop-arrow" />
+        </a>
+        <ul class="dropdown-menu ">
+            <li >
+                @if (current == "es-ES" || current == "es")
+                {
+                    <a href="@Url.Action("ChangeLanguage", "Culture", new { culture = "en-US",returnUrl=this.Request.RawUrl})">
+                        @Resources.English
+                    </a>
+                }
+                else if (current == "en-us" || current == "en")
+                {
+                    <a href="@Url.Action("ChangeLanguage", "Culture", new { culture = "es-ES",returnUrl=this.Request.RawUrl})">
+                        @Resources.Spanish
+                    </a>
+                }
+            </li>           
+        </ul>
+    </li>
+</ul>
+
+<script>
+    $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+    });
+</script>
+
 
 

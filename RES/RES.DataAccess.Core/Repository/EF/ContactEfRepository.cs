@@ -36,12 +36,6 @@ namespace RES.DataAccess.Core.Repository.EF
             
         }
 
-        public List<Contact> GetContact()
-        {
-            List<Contact> contacts = Context.Contacts.ToList();
-            return contacts;
-        }
-
         public ContactList GetContact(int page = 0, int sort = 0)
         {
             ContactList contactList = new ContactList();

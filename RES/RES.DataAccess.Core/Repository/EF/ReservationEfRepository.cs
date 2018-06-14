@@ -16,28 +16,19 @@ namespace RES.DataAccess.Core.Repository.EF
         public ReservationEfRepository(ResEntities dbCtx) : base(dbCtx)
         {
         }
-        public bool DeleteReservation(int id)
+
+        public bool AddFavorite(int id)
         {
-            Reservation itemToDelete = Context.Reservations.SingleOrDefault(c => c.Id == id);
-            if (itemToDelete != null)
-            {
-                Context.Entry(itemToDelete).State = EntityState.Deleted;
-                return (Context.SaveChanges() > 0);
-            }
-            else
-                return false;
-            
+            Reservation item = Context.Reservations.SingleOrDefault(c => c.Id == id);
+            item.IsFavorite = true;
+            Context.Entry(item).State = EntityState.Modified;
+            return (Context.SaveChanges() > 0);
         }
 
-        public ReservationList GetReservation()
+        public IEnumerable<Contact> ContactListForReservation()
         {
-            List<Reservation> reservations = Context.Reservations.ToList();
-            ReservationList reservationList = new ReservationList();
-            
-            reservationList.SortByCode = 0;
-            reservationList.List= reservations;
-
-            return reservationList;
+            List<Contact> list = Context.Contacts.ToList();
+            return list;
         }
 
         public ReservationList GetReservation(int page = 0, int sort = 0)
@@ -111,10 +102,10 @@ namespace RES.DataAccess.Core.Repository.EF
             return Context.Reservations.FirstOrDefault(c => c.Id == id);
         }
 
-        public int InsertReservation(Reservation reservation)
+        public IEnumerable<Place> PlaceList()
         {
-            Context.Reservations.Add(reservation);
-            return Context.SaveChanges();
+            List<Place> list = Context.Places.ToList();
+            return list;
         }
 
         public int UpdateReservation(Reservation reservation)

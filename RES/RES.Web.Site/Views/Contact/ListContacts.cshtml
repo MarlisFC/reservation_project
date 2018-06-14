@@ -11,13 +11,13 @@
         <th>
             <a href="@Url.Action("ListContacts", "Contact", new { sortCode= 1 })"> @Resources.ContactName</a>
         </th>
-        <th>
+        <th class="hidden-xs" >
             <a href="@Url.Action("ListContacts", "Contact", new { sortCode = 2})"> @Resources.Phone</a>
         </th>
-        <th>
+        <th class="hidden-xs">
             <a href="@Url.Action("ListContacts", "Contact", new { sortCode = 3 })"> @Resources.BirthDate</a>
         </th>
-        <th>
+        <th class="hidden-xs">
             <a href="@Url.Action("ListContacts", "Contact", new { sortCode = 4 })"> @Resources.ContactType</a>
         </th>
         <th>
@@ -31,14 +31,14 @@
             <td class="col-xs-12 col-sm-2">
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td class="col-xs-12 col-sm-2">
+            <td class="col-xs-12 col-sm-2 hidden-xs" >
                 @Html.DisplayFor(modelItem => item.Phone)
             </td>
-            <td class="col-xs-12 col-sm-2">
+            <td class="col-xs-12 col-sm-2 hidden-xs"  >
                 @Html.DisplayFor(modelItem => item.Birthdate)
             </td>
 
-            <td class="col-xs-12 col-sm-2">
+            <td class="col-xs-12 col-sm-2 hidden-xs" >
                 @Html.DisplayFor(modelItem => item.ContactType.Value)
             </td>
             <td class="col-xs-12 col-sm-2">
@@ -117,7 +117,6 @@
             contentType: "application/json",
             success: function (result) {
                 window.location.href = urlListContacts;
-                //$('#term-modal').modal('hide');
             },
             error: function (xmlHttpRequest, textStatus, errorThrown) {
                 alert(errorThrown);

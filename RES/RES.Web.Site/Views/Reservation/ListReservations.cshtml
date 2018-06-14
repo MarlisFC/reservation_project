@@ -1,4 +1,4 @@
-﻿@using RES.Commons.Core.Resource
+﻿@using RES.Commons.Core
 @using TwitterBootstrap3
 @using TwitterBootstrapMVC
 @model RES.BusinessLogic.Core.Entities.ReservationList
@@ -60,23 +60,22 @@
                             </div>                           
                         </div>               
                 </td>
-                <td class="col-xs-12 col-sm-5" style="display:flex;padding-top: 12px !important;" >
-                        @if (item.IsFavorite)
-                        {   <label class="disable hidden-xs">@Resources.AddFavorites</label>
-                            <img class="favorite" src="@Url.Content("~/Content/images/redHeart.png")">
-                        }
-                        else
-                        {
-                            <label class="enable hidden-xs">@Resources.AddFavorites</label>
-                            <a class="enable" @*href="@Url.Action("Edit", "UpdateReservation", new { id = item.Id })"*@>
-                                <img class="favorite" src="@Url.Content("~/Content/images/greyHeart.png")">
-                            </a>
-                       }
+                <td class="col-xs-12 col-sm-5" style="display:flex;padding-top: 12px !important;">
+                    @if (item.IsFavorite)
+    {<label class="disable hidden-xs">@Resources.AddFavorites</label>
+                <img class="favorite" src="@Url.Content("~/Content/images/redHeart.png")">
+}
+else
+{
+                <label class="enable hidden-xs">@Resources.AddFavorites</label>              
+                <a class="enable" href="javascript:void(0);" onclick="addFavorite(@item.Id)">
+                    <img class="favorite" src="@Url.Content("~/Content/images/greyHeart.png")">
+                </a>
+}
                 </td>
                 <td class="col-xs-12 col-sm-1" >
                     <div style="float: inline-end">
-                        <a class="page-btn" @*href="@Url.Action("UpdateReservation", "Reservation", new { id = item.Id })"*@>@Resources.Edit</a>
-                        @*<a class="page-btn" href="@Url.Action("DeleteReservation", "Reservation", new { id = item.Id })">@Resources.Delete</a>*@
+                        <a class="page-btn" href="@Url.Action("UpdateReservation", "Reservation", new { id = item.Id })">@Resources.Edit</a>
                     </div>                    
                 </td>
             </tr>
@@ -101,7 +100,28 @@
      </div>
 </div>
 <script>
-   var urlListContact = "@Url.Action("ListReservations", "Reservation")";
+
+
+     var urlAddFavorite = "@Url.Action("AddFavorite", "Reservation")";
+     var urlListReservation = "@Url.Action("ListReservations", "Reservation")";
+
+    function addFavorite(id) {
+
+        $.ajax({
+
+            url: urlAddFavorite,
+            type: "POST",
+            data: '{id: ' + id + '}',
+            contentType: "application/json",
+            success: function (result) {
+                window.location.href = urlListReservation;
+            },
+            error: function (xmlHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    }
+
     ko.bindingHandlers.value = {
         init: function (element, valueAccessor, allBindingsAccessor, viewModel) {
             // Register change callbacks to update the model
@@ -112,7 +132,7 @@
                 var s = element.value;
                 var p = viewModel.page;
 
-                window.location.href = urlListContact+"?sortCode=" + s + "&page=" + p;
+                window.location.href = urlListReservation+"?sortCode=" + s + "&page=" + p;
             });
         },
         // Update the control whenever the view model changes

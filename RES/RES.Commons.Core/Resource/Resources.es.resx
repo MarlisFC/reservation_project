@@ -174,6 +174,9 @@
   <data name="ContactType" xml:space="preserve">
     <value>Tipo de Contacto</value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Eliminar</value>
   </data>

@@ -1,4 +1,4 @@
-﻿@using RES.Commons.Core.Resource
+﻿@using RES.Commons.Core
 @using RES.Web.Site.Extensions
 
 
@@ -13,21 +13,24 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/Script-custom-editor")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jQueryUI")
     <script src="~/Scripts/knockout-3.4.2.js"></script>
-    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/themes/base/jquery-ui.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="~/Content/jquery.rating.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="~/Content/jquery.qtip.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="~/Content/jquery.mask.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="~/Content/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="~/Content/editor.css" />
-
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/bootstrap-datepicker3.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/toastr.css" />
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
 
 
 </head>
-<body >
+<body>
     <div class="header">
         <div class="header-container">
             <div class="logo">
@@ -38,33 +41,52 @@
                     <img style="margin: 35px 0 0 10px" src="@Url.Content("~/Content/images/description.png")">
                 </div>
             </div>
-        </div>
-    </div>
-    <div style="background-color:#F8F8F8">
-        <div class="container" style="padding:0px">
-            <div class="row" >
-                <div class="col-xs-12 col-sm-10"></div>
-                <div class="col-xs-12 col-sm-3">
-                    <p class="subtitle">@ViewBag.Title</p>
-                </div>
-                <div class="col-xs-12 col-sm-6 hidden-xs">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-                <div class="col-sm-3 ">
-                    <div class="hidden-xs" style="float: inline-end">
-                        <a class="page-btn" href="@Url.Content(string.Format("/{0}/{1}/{2}", ViewBag.Language, ViewBag.Controller, ViewBag.Method))">@ViewBag.Title2</a>
-                    </div>
+            <div class="row ">
+                <div class="col-xs-3 col-sm-4"></div>
+                <div class="col-xs-3 col-sm-1 language">
+                    @Html.Partial("~/Views/Shared/_TopMenuPartial.cshtml")
                 </div>
             </div>
         </div>
     </div>
+    <div style="background-color:#F8F8F8">
+        <div class="container" style="padding:0px">
+            <div class="row ">
+                <div class="col-xs-3 col-sm-10"></div>
+                <div class="col-xs-12 col-sm-3 btn-xs ">
+                    <p class="subtitle">@ViewBag.Title</p>
+                </div>
+                <div class="col-xs-12 col-sm-5 hidden-xs">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="col-sm-2 col-xs-12 btn-xs">
+                    <div style="float: inline-end">
+                        <a class="page-btn" href="@Url.Content(string.Format("/{0}/{1}/{2}", ViewBag.Language, ViewBag.Controller, ViewBag.Method))">@ViewBag.Title2</a>
+                    </div>
+                </div>
+                @{
+                    String title = ViewBag.Title;
+                    if (title.Contains("Contact"))
+                    {
+                        <div class="col-sm-2 col-xs-12 btn-xs ">
+                            <div style="float: inline-end">
+                                <a class="page-btn" href="@Url.Content(string.Format("/{0}/{1}/{2}", ViewBag.Language,"Reservation", "ListReservations"))">@Resources.ReservationList </a>
+                            </div>
+                        </div>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
     <div class="container body-content body__">
-        
+
         @RenderBody()
         <hr />
     </div>
-    <script type="text/javascript" src="~/Scripts/jquery-2.0.2.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery-ui-1.10.3.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-ui-1.10.2.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-ui-i18n.js"></script>
     <script type="text/javascript" src="~/Scripts/Plugin/jquery-qtip/jquery.qtip.js"></script>
     <script type="text/javascript" src="~/Scripts/Plugin/jquery-mask/jquery.mask.js"></script>
     <script type="text/javascript" src="~/Scripts/Plugin/jquery-icheck/jquery.icheck.js"></script>
@@ -75,7 +97,12 @@
     <script type="text/javascript" src="~/Scripts/Plugin/2ls/2ls.js"></script>
     <script type="text/javascript" src="~/Scripts/underscore-min.js"></script>
     <script type="text/javascript" src="~/Scripts/editor.js"></script>
-    
+    <script type="text/javascript" src="~/Scripts/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/locales/bootstrap-datepicker.es.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/toastr.js"></script>
+    <script type="text/javascript" src="~/Scripts/message.js"></script>
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

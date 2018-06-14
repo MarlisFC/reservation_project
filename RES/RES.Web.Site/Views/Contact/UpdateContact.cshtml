@@ -1,8 +1,11 @@
 ﻿@model RES.BusinessLogic.Core.Entities.ContactModel
 @using RES.BusinessLogic.Core.Entities;
 @using RES.Commons.Core.Resource
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var date = ViewBag.Date;
 }
 
 @using (Html.BeginForm())
@@ -14,10 +17,8 @@
             <div class="col-xs-12 col-md-3 col-sm-6 no_padding">
                 <img class="image-contact__" src="@Url.Content("~/Content/images/name.png")">
                 @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "input__", data_bind = "value : Name" } })
-
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
-
             <div class="col-xs-12 col-md-3 col-sm-6 no_padding">
                 <img class="image-contact__" src="@Url.Content("~/Content/images/type.png")">
                 @Html.DropDownListFor(m => m.ContactTypeId, new SelectList((IEnumerable<ContactType>)ViewBag.ContactTypes, "Id", "Value"), new { @class = "input__", data_bind = "value : ContactTypeId" })
@@ -26,15 +27,13 @@
 
             <div class="col-xs-12 col-md-3 col-sm-6 no_padding">
                 <img class="image-contact__" src="@Url.Content("~/Content/images/phone.png")">
-                @Html.EditorFor(m => m.Phone, new { htmlAttributes = new { @class = "input__", data_bind = "value : Phone"  } })
-                @*<input class="input__" data-bind="value : Phone">*@
+                @Html.EditorFor(m => m.Phone, new { htmlAttributes = new { @class = "input__", data_bind = "value : Phone" } })
                 @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
             </div>
 
             <div class="col-xs-12 col-md-3 col-sm-6 no_padding">
                 <img class="image-contact__" src="@Url.Content("~/Content/images/calendar.png")">
-                @*<input type="date" name="bdaytime" class="input__" placeholder=@Resources.BirthDate data-bind="value : Birthdate">*@
-                @Html.EditorFor(m => m.Birthdate, new { htmlAttributes = new { @class = "input__", type = "date", data_bind = "value : Birthdate" } })
+                <input name="bdaytime" class="datecontrol input-validation-error input__" id="bdaytime" aria-invalid="true" value="@Model.Birthdate.ToString()" aria-required="true" type="text" placeholder="@Resources.BirthDate">              
                 @Html.ValidationMessageFor(m => m.Birthdate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -52,23 +51,37 @@
             </div>
         </div>
     </div>
+   
     <div class="hide">
         <input type="text" hidden id="id_txt" value="@Model.Id" style="height:1px" /><br />
         <input type="text" hidden id="name_txt" value="@Model.Name" style="height:1px" /><br />
         <input type="text" hidden id="description_txt" value="@Model.Description" style="height:1px" /><br />
         <input type="text" hidden id="birthdate_txt" value="@Model.Birthdate" style="height:1px" /><br />
         <input type="text" hidden id="phone_txt" value="@Model.Phone" style="height:1px" /><br />
+        <input type="text" hidden id="id_lang" value="@ViewBag.Language" style="height:1px" /><br />
     </div>
 }
 
-    <script>
+
+<script type="text/javascript">
+
 
     $(document).ready(function () {
         $('.textarea-editor').Editor();
-
         var description = $('#description_txt').val();
         $('.textarea-editor').Editor("setText", description);
-        init();
+        init();       
+        var date = new Date();
+        var lang = $('#id_lang').val();       
+        $(".datecontrol").datepicker({
+            endDate: date,
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+            weekStart: 1,
+            language: lang,
+            calendarWeeks: true
+        });
     });
 
     var urlUpdateContact = "@Url.Action("UpdateContact", "Contact")";
@@ -87,34 +100,32 @@
 
 
     function init() {
-       //updateModel.Id($('#id_txt').val());
         updateModel.Name($('#name_txt').val());
         updateModel.Birthdate($('#birthdate_txt').val());
-        updateModel.Phone($('#phone_txt').val());        
+        updateModel.Phone($('#phone_txt').val());
     }
 
-    function update() {
-        updateModel.Description = $('.textarea-editor').Editor("getText");
-        var id = $('#id_txt').val();
-        var json = ko.toJS(updateModel);
-        $.ajax({
-
-            url: urlUpdateContact ,
-            type: "POST",
-            data: JSON.stringify(json),
-            contentType: "application/json",
-            success: function (result) {
-                window.location.href = urlListContacts;
-            },
-            error: function (xmlHttpRequest, textStatus, errorThrown) {
-                alert(errorThrown);
-            }
-        });
+        function update() {
+            updateModel.Description = $('.textarea-editor').Editor("getText");
+            updateModel.Birthdate = $('#bdaytime').val();
+            var id = $('#id_txt').val();
+            var json = ko.toJS(updateModel);
+            $.ajax({
+                url: urlUpdateContact ,
+                type: "POST",
+                data: JSON.stringify(json),
+                contentType: "application/json",
+                success: function (result) {
+                   window.location.href = urlListContacts;
+                },
+                error: function (xmlHttpRequest, textStatus, errorThrown) {
+                    setMessage("error", errorThrown);         
+                }
+            });
     }
+</script>
 
 
-
-    </script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
