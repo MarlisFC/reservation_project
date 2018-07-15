@@ -1,7 +1,12 @@
 namespace RES.BusinessLogic.Core.Data
 {
+    using System;
     using System.Data.Entity;
+    using System.Data.Entity.Core.Objects;
+    using System.Data.Entity.Infrastructure;
     using System.Data.Entity.ModelConfiguration.Conventions;
+    using System.Data.SqlClient;
+    using System.Linq;
     using RES.BusinessLogic.Core.Entities;
 
     public class ResEntities : DbContext
@@ -37,6 +42,16 @@ namespace RES.BusinessLogic.Core.Data
         public virtual DbSet<ContactType> ContactType { get; set; }
 
         public virtual DbSet<Place> Places { get; set; }
+
+        public virtual sp_GetReservationById_Result sp_GetReservationById(int? id)
+        {
+            var idParameter = id.HasValue ?
+                new SqlParameter("Id", id) :
+                new SqlParameter("Id", typeof(int));
+
+            //return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetReservationById_Result>("sp_GetReservationById", idParameter);
+            return this.Database.SqlQuery<sp_GetReservationById_Result>("sp_GetReservationById @id", idParameter).SingleOrDefault();
+        }
     }
 
     //public class MyEntity

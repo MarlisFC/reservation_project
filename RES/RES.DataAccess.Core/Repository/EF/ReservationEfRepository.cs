@@ -7,6 +7,7 @@ using RES.BusinessLogic.Core.Entities;
 using RES.BusinessLogic.Core.Data;
 using System.Data.Entity;
 using PagedList;
+using System.Data.Entity.Core.Objects;
 
 namespace RES.DataAccess.Core.Repository.EF
 {
@@ -99,7 +100,26 @@ namespace RES.DataAccess.Core.Repository.EF
 
         public Reservation GetReservationById(int id)
         {
-            return Context.Reservations.FirstOrDefault(c => c.Id == id);
+            var sp = Context.sp_GetReservationById(id);
+            if (sp != null)
+            {
+                Reservation reservation = new Reservation()
+                {
+                    Id = sp.Id,
+                    Date = sp.Date,
+                    IsFavorite = sp.IsFavorite,
+                    Ranking = sp.Ranking,
+                    PlaceId = sp.PlaceId,
+                    ContactId = sp.ContactId,
+                    Description=sp.Description
+
+                };
+                return reservation;
+            }
+            else
+                return null;            
+        
+           //return Context.Reservations.FirstOrDefault(c => c.Id == id);
         }
 
         public IEnumerable<Place> PlaceList()
